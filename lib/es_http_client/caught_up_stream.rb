@@ -12,7 +12,6 @@ module EsHttpClient
 
     def subscribe(&block)
       loop do
-        sleep 1
         @ref = fetch(@ref, &block)
       end
     end
