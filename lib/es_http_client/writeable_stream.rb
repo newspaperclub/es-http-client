@@ -26,9 +26,7 @@ module EsHttpClient
     def append(event, expected_version=ExpectedVersion::Any)
       @connection.post(Ref.head_of(@stream_name).uri, event, expected_version)
       true
-    rescue EsHttpClientError => e
-      STDERR.puts e.message
-      STDERR.puts e.backtrace
+    rescue EsHttpClientError
       false
     end
 

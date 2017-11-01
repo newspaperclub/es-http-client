@@ -9,7 +9,6 @@ module EsHttpClient
   class Connection
 
     def initialize(endpoint, username=nil, password=nil)
-      STDERR.puts "Faraday connecting to #{endpoint}"
       @connection = Faraday.new(url: endpoint) do |faraday|
         faraday.request :retry, max: 4, interval: 0.05, interval_randomness: 0.5, backoff_factor: 2
         faraday.response :json, content_type: 'application/json'
@@ -36,7 +35,6 @@ module EsHttpClient
       end
       response
     rescue EsHttpClientError => e
-      STDERR.puts "Faraday: Error response #{e}"
       raise e
     end
 
